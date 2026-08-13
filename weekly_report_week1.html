@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新媒体运营周报 - 第1周</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0070C0 0%, #005090 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .header .meta {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0070C0;
+            border-left: 4px solid #0070C0;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .day-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0070C0;
+        }
+        .day-card h3 {
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .day-card ul {
+            padding-left: 20px;
+        }
+        .day-card li {
+            margin: 8px 0;
+            line-height: 1.6;
+            color: #555;
+            font-size: 14px;
+        }
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .output-item {
+            background: linear-gradient(135deg, #e8f4fd 0%, #d1eafc 100%);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .output-item .name {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        .output-item .status {
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .topic-list {
+            display: grid;
+            gap: 12px;
+        }
+        .topic-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .topic-item:hover {
+            border-color: #0070C0;
+            box-shadow: 0 4px 12px rgba(0,112,192,0.1);
+        }
+        .topic-item .num {
+            display: inline-block;
+            background: #0070C0;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        .topic-item .title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        .topic-item .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        .problem-card {
+            background: #fff3cd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #ffc107;
+        }
+        .problem-card h4 {
+            font-size: 14px;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .problem-card p {
+            font-size: 13px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        .plan-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .plan-item .num {
+            background: #0070C0;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .plan-item .text {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .support-box {
+            background: #f8d7da;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #dc3545;
+        }
+        .support-box h4 {
+            color: #721c24;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .support-box ul {
+            padding-left: 20px;
+        }
+        .support-box li {
+            font-size: 13px;
+            color: #721c24;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        .insight-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #28a745;
+        }
+        .insight-box p {
+            font-size: 14px;
+            color: #155724;
+            line-height: 1.8;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>新媒体运营周报</h1>
+            <div class="meta">汇报人：江采璇 | 汇报周期：2026年8月12日-8月14日</div>
+        </div>
+        
+        <div class="content">
+            <!-- 一、本周工作概述 -->
+            <div class="section">
+                <div class="section-title">一、本周工作概述</div>
+                <p style="font-size:14px;color:#555;line-height:1.8;">
+                    本周为入职第一周（8.12-8.14），主要完成了公司业务熟悉、竞品调研、内容选题策划与拍摄工作，为后续自然流测试和投放优化奠定基础。
+                </p>
+            </div>
+            
+            <!-- 二、每日工作内容 -->
+            <div class="section">
+                <div class="section-title">二、每日工作内容</div>
+                
+                <div class="day-card">
+                    <h3>📅 8月12日 周三 | 入职熟悉期</h3>
+                    <ul>
+                        <li>了解公司架构与团队分工（5人团队，明确各自职责）</li>
+                        <li>熟悉移民产品线：圣基茨、希腊、香港、新加坡等主流项目</li>
+                        <li>调研老板视频号"Doris谈身份规划"（46条视频，约3个月），分析内容风格与优缺点</li>
+                        <li>与老板沟通初步想法，获得认可：建议场景化内容渗透目标人群</li>
+                        <li>完成竞品账号调研：小红书、视频号、抖音平台对标账号分析</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <h3>📅 8月13日 周四 | 内容制作期</h3>
+                    <ul>
+                        <li>制作并拍摄6条视频选题（已全量完成拍摄）</li>
+                        <li>输出小红书图文：圣基茨vs希腊对比图文（6张）</li>
+                        <li>整理对标账号内容结构，分析爆款逻辑</li>
+                        <li>制定下周内容发布计划与数据追踪表</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <h3>📅 8月14日 周五 | 本周工作收尾</h3>
+                    <ul>
+                        <li>整理本周工作成果，输出周报</li>
+                        <li>规划下周内容发布节奏与数据监测指标</li>
+                        <li>与团队同步账号运营思路，明确分工</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 三、本周产出清单 -->
+            <div class="section">
+                <div class="section-title">三、本周产出清单</div>
+                <div class="output-grid">
+                    <div class="output-item">
+                        <span class="name">老板视频号账号诊断报告</span>
+                        <span class="status">已完成</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">竞品账号调研（三平台）</span>
+                        <span class="status">已完成</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">视频选题策划（6个方向）</span>
+                        <span class="status">已完成</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">视频拍摄（6条，已完工）</span>
+                        <span class="status">已完成</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">小红书图文《圣基茨vs希腊》</span>
+                        <span class="status">已完成</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">下周内容发布计划</span>
+                        <span class="status" style="background:#ffc107;">进行中</span>
+                    </div>
+                    <div class="output-item">
+                        <span class="name">数据追踪表（Excel）</span>
+                        <span class="status" style="background:#ffc107;">进行中</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 四、已拍摄的6个视频选题 -->
+            <div class="section">
+                <div class="section-title">四、已拍摄的6个视频选题（待剪辑发布）</div>
+                <div class="topic-list">
+                    <div class="topic-item">
+                        <span class="num">1</span>
+                        <span class="title">《70%的中国家庭财富，都压在房子里，这是机会还是风险？》</span>
+                        <br><span class="tag">财富观/资产配置</span>
+                    </div>
+                    <div class="topic-item">
+                        <span class="num">2</span>
+                        <span class="title">《第四次存款搬家背后的真相：钱为什么开始寻找新的方向？》</span>
+                        <br><span class="tag">宏观经济/存款趋势</span>
+                    </div>
+                    <div class="topic-item">
+                        <span class="num">3</span>
+                        <span class="title">《为什么很多老板赚钱以后，第一件事不是买豪车？》</span>
+                        <br><span class="tag">企业家/财富认知</span>
+                    </div>
+                    <div class="topic-item">
+                        <span class="num">4</span>
+                        <span class="title">《中国家庭和美国家庭，谁的生活压力更小？》</span>
+                        <br><span class="tag">中外对比/风险分散</span>
+                    </div>
+                    <div class="topic-item">
+                        <span class="num">5</span>
+                        <span class="title">《孩子未来10年的路，为什么不能只看成绩？》</span>
+                        <br><span class="tag">教育规划/身份选择</span>
+                    </div>
+                    <div class="topic-item">
+                        <span class="num">6</span>
+                        <span class="title">《企业出海时代，老板需要重新认识身份》</span>
+                        <br><span class="tag">企业出海/身份布局</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 五、当前账号现状与问题诊断 -->
+            <div class="section">
+                <div class="section-title">五、当前账号现状与问题诊断</div>
+                
+                <div class="problem-card">
+                    <h4>视频号"Doris谈身份规划"</h4>
+                    <p>46条视频/3个月，有优质内容基础，但自然流数据偏低，缺乏差异化定位</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h4>小红书企业号（2个）</h4>
+                    <p>内容同质化，发政策解读类图文，投放薯条客资成本1000+，转化差</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h4>抖音品牌号</h4>
+                    <p>视频0自然流，投1万被限流/封号，行业限制严格</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h4>百度投放</h4>
+                    <p>SEO引流，线索质量一般，无实际转化</p>
+                </div>
+                
+                <div class="problem-card" style="background:#f8d7da;border-left-color:#dc3545;">
+                    <h4 style="color:#721c24;">核心问题</h4>
+                    <p style="color:#721c24;">信任感不足——客户看了广告不相信，导致投放成本高、转化低</p>
+                </div>
+            </div>
+            
+            <!-- 六、下周工作计划 -->
+            <div class="section">
+                <div class="section-title">六、下周工作计划（8.18-8.22）</div>
+                
+                <div class="plan-item">
+                    <div class="num">1</div>
+                    <div class="text">发布6条已拍摄视频（视频号+小红书+抖音多平台分发）</div>
+                </div>
+                <div class="plan-item">
+                    <div class="num">2</div>
+                    <div class="text">建立数据追踪表，每日记录播放量/点赞/评论/私信/留资</div>
+                </div>
+                <div class="plan-item">
+                    <div class="num">3</div>
+                    <div class="text">根据数据反馈调整内容方向，找出爆款公式</div>
+                </div>
+                <div class="plan-item">
+                    <div class="num">4</div>
+                    <div class="text">与新媒体总监沟通，优化视频剪辑节奏与封面</div>
+                </div>
+                <div class="plan-item">
+                    <div class="num">5</div>
+                    <div class="text">准备小红书/抖音品牌号起号方案</div>
+                </div>
+            </div>
+            
+            <!-- 七、需要支持的事项 -->
+            <div class="section">
+                <div class="section-title">七、需要支持的事项</div>
+                <div class="support-box">
+                    <ul>
+                        <li>明确账号归属：小红书/抖音品牌号由我统一运营，还是各自独立？</li>
+                        <li>投放预算确认：视频号保证金10万是否可申请？抖音本地推测试预算？</li>
+                        <li>新同事IP账号规划：与老板IP如何差异化定位，避免内部竞争</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 八、本周心得 -->
+            <div class="section">
+                <div class="section-title">八、本周心得</div>
+                <div class="insight-box">
+                    <p>本周最大的收获是认识到：移民行业线上获客的核心不是"政策解读"，而是"信任建立"。目前账号内容偏向官方口吻，缺乏人情味和场景感。下周将重点测试场景化、故事化内容，通过真实案例和客户痛点切入，提升用户信任度和转化率。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            汇报人：江采璇 | 新媒体运营专员 | 2026年8月14日
+        </div>
+    </div>
+</body>
+</html>
